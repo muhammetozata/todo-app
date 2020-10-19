@@ -12,6 +12,7 @@ type mysqlTodoRepository struct {
 	Conn *sql.DB
 }
 
+// NewMysqlTodoRepository is a construct
 func NewMysqlTodoRepository(conn *sql.DB) _model.TodoRepository {
 	return &mysqlTodoRepository{Conn: conn}
 }
