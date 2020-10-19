@@ -48,7 +48,7 @@ func (r *mysqlTodoRepository) query(ctx context.Context, query string, args ...i
 	return
 }
 
-func (r *mysqlTodoRepository) GetById(ctx context.Context, id int64) (_model.Todo, error) {
+func (r *mysqlTodoRepository) GetByID(ctx context.Context, id int64) (_model.Todo, error) {
 
 	query := `SELECT id, title, completed FROM todos WHERE ID = ?`
 

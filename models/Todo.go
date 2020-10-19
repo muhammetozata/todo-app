@@ -12,7 +12,7 @@ type Todo struct {
 
 // TodoRepository for Todo struct ...
 type TodoRepository interface {
-	GetById(ctx context.Context, id int64) (Todo, error)
+	GetByID(ctx context.Context, id int64) (Todo, error)
 	GetByTitle(ctx context.Context, title string) (Todo, error)
 	GetByUserId(ctx context.Context, userID int64) (Todo, error)
 	Store(ctx context.Context, t *Todo) error
@@ -22,7 +22,7 @@ type TodoRepository interface {
 
 // TodoUsecase ...
 type TodoUsecase interface {
-	GetById(ctx context.Context, id int64) (Todo, error)
+	GetByID(ctx context.Context, id int64) (Todo, error)
 	GetByTitle(ctx context.Context, title string) (Todo, error)
 	GetByUserId(ctx context.Context, userID int64) (Todo, error)
 	Store(ctx context.Context, t *Todo) error
