@@ -13,19 +13,19 @@ type Todo struct {
 // TodoRepository for Todo struct ...
 type TodoRepository interface {
 	GetByID(ctx context.Context, id int64) (Todo, error)
-	GetByTitle(ctx context.Context, title string) (Todo, error)
-	GetByUserId(ctx context.Context, userID int64) (Todo, error)
-	Store(ctx context.Context, t *Todo) error
-	Update(ctx context.Context, t *Todo) error
-	Delete(ctx context.Context, id int64) error
+	// GetByTitle(ctx context.Context, title string) (Todo, error)
+	// GetByUserId(ctx context.Context, userID int64) (Todo, error)
+	// Store(ctx context.Context, t *Todo) error
+	// Update(ctx context.Context, t *Todo) error
+	// Delete(ctx context.Context, id int64) error
 }
 
 // TodoService for Todo struct ...
 type TodoService interface {
 	GetByID(ctx context.Context, id int64) (Todo, error)
-	GetByTitle(ctx context.Context, title string) (Todo, error)
-	GetByUserId(ctx context.Context, userID int64) (Todo, error)
-	Store(ctx context.Context, t *Todo) error
-	Update(ctx context.Context, t *Todo) error
-	Delete(ctx context.Context, id int64) error
+	// GetByTitle(ctx context.Context, title string) (Todo, error)
+	// GetByUserId(ctx context.Context, userID int64) (Todo, error)
+	// Store(ctx context.Context, t *Todo) error
+	// Update(ctx context.Context, t *Todo) error
+	// Delete(ctx context.Context, id int64) error
 }

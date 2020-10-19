@@ -1,24 +1,50 @@
 package todo
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/labstack/echo"
-	"github.com/muhammetozata/todo-app/models"
+	_model "github.com/muhammetozata/todo-app/models"
 )
 
-type TodoHandler struct {
-	TUsecase models.TodoUsecase
+// ResponseError ...
+type ResponseError struct {
+	Message string `json:"message"`
 }
 
-func NewTodoHandler(e *echo.Echo, us models.TodoUsecase) {
+// TodoHandler ...
+type TodoHandler struct {
+	TService _model.TodoService
+}
+
+func NewTodoHandler(e *echo.Echo, ts _model.TodoService) {
 	todoHandler := &TodoHandler{
-		TUsecase: tUsecase
+		TService: ts,
 	}
 
-	e.GET("todos/:id", todoHandler.TUsecase.GetById)
+	e.GET("/todos/:id", todoHandler.GetByID)
 }
 
+func (th *TodoHandler) GetByID(c echo.Context) error {
+	// idP, err := strconv.Atoi(c.Param("id"))
 
-func (th *TodoHandler) GetByID() {
+	idP, err := strconv.Atoi(c.Param("id"))
 
+	if err != nil {
+
+		return c.JSON(http.StatusNotFound, ResponseError{Message: err.Error()})
+	}
+
+	id := int64(idP)
+
+	ctx := c.Request().Context()
+
+	todo, err := th.TService.GetByID(ctx, id)
+
+	if err != nil {
+		return c.JSON(http.StatusNotFound, ResponseError{Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, todo)
 }
-
