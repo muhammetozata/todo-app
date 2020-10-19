@@ -13,21 +13,22 @@ type ResponseError struct {
 	Message string `json:"message"`
 }
 
-// TodoHandler ...
-type TodoHandler struct {
+// TodooHandler ...
+type TodooHandler struct {
 	TService _model.TodoService
 }
 
-func NewTodoHandler(e *echo.Echo, ts _model.TodoService) {
-	todoHandler := &TodoHandler{
+// NewTodooHandler is a construct
+func NewTodooHandler(e *echo.Echo, ts _model.TodoService) {
+	todooHandler := &TodooHandler{
 		TService: ts,
 	}
 
-	e.GET("/todos/:id", todoHandler.GetByID)
+	e.GET("/todos/:id", todooHandler.GetByID)
 }
 
-func (th *TodoHandler) GetByID(c echo.Context) error {
-	// idP, err := strconv.Atoi(c.Param("id"))
+// GetByID ...
+func (th *TodooHandler) GetByID(c echo.Context) error {
 
 	idP, err := strconv.Atoi(c.Param("id"))
 
