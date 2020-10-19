@@ -20,8 +20,8 @@ type TodoRepository interface {
 	Delete(ctx context.Context, id int64) error
 }
 
-// TodoUsecase ...
-type TodoUsecase interface {
+// TodoService for Todo struct ...
+type TodoService interface {
 	GetByID(ctx context.Context, id int64) (Todo, error)
 	GetByTitle(ctx context.Context, title string) (Todo, error)
 	GetByUserId(ctx context.Context, userID int64) (Todo, error)
