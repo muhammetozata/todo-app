@@ -13,7 +13,7 @@ type mysqlTodoRepository struct {
 }
 
 func NewMysqlTodoRepository(conn *sql.DB) _model.TodoRepository {
-	return &mysqlTodoRepository{Conn}
+	return &mysqlTodoRepository{Conn: conn}
 }
 
 func (r *mysqlTodoRepository) query(ctx context.Context, query string, args ...interface{}) (result []_model.Todo, err error) {
@@ -26,7 +26,7 @@ func (r *mysqlTodoRepository) query(ctx context.Context, query string, args ...i
 
 	defer rows.Close()
 
-	result := make([]_model.Todo, 0)
+	result = make([]_model.Todo, 0)
 
 	for rows.Next() {
 		t := _model.Todo{}
@@ -56,8 +56,8 @@ func (r *mysqlTodoRepository) GetByID(ctx context.Context, id int64) (_model.Tod
 
 	if err != nil {
 		log.Fatal(err.Error())
-		return nil, err
+		return _model.Todo{}, err
 	}
 
-	return result[0:1], nil
+	return result[0], nil
 }
