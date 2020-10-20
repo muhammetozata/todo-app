@@ -27,7 +27,7 @@ func (tj *TJSONRepository) GetByID(ctx context.Context, id int64) (models.Todo, 
 
 	resp, _ = http.Get(tj.URL)
 
-	defer resp.Body.Close()
+	// defer resp.Body.Close()
 
 	var todo models.Todo
 
