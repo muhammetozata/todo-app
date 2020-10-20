@@ -31,9 +31,7 @@ func NewTodooHandler(e *echo.Echo, ts _model.TodoService) {
 func (th *TodooHandler) GetByID(c echo.Context) error {
 	idStr := c.Param("id")
 
-	idP, _ := strconv.Atoi(idStr)
-
-	id := int64(idP)
+	id, _ := strconv.ParseInt(idStr, 10, 64)
 
 	ctx := c.Request().Context()
 
