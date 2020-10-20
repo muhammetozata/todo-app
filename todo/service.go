@@ -19,6 +19,11 @@ func NewTodoService(todoRepo _model.TodoRepository) _model.TodoService {
 }
 
 func (ts *todoService) GetByID(ctx context.Context, id int64) (_model.Todo, error) {
+
+	ctx, cancel := context.WithTimeout(ctx, 2000)
+
+	defer cancel()
+
 	todo, err := ts.TodoRepo.GetByID(ctx, id)
 
 	if err != nil {
