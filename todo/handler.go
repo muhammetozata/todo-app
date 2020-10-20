@@ -29,13 +29,9 @@ func NewTodooHandler(e *echo.Echo, ts _model.TodoService) {
 
 // GetByID ...
 func (th *TodooHandler) GetByID(c echo.Context) error {
+	idStr := c.Param("id")
 
-	idP, err := strconv.Atoi(c.Param("id"))
-
-	if err != nil {
-
-		return c.JSON(http.StatusNotFound, ResponseError{Message: err.Error()})
-	}
+	idP, _ := strconv.Atoi(idStr)
 
 	id := int64(idP)
 
