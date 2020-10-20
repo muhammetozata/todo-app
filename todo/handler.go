@@ -2,6 +2,7 @@ package todo
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo"
 	_model "github.com/muhammetozata/todo-app/models"
@@ -29,5 +30,14 @@ func NewTodooHandler(e *echo.Echo, ts _model.TodoService) {
 // GetByID ...
 func (th *TodooHandler) GetByID(c echo.Context) error {
 
-	return c.JSON(http.StatusOK, _model.Todo{})
+	idP := c.Param("id")
+	id, _ := strconv.Atoi(idP)
+
+	id64 := int64(id)
+
+	ctx := c.Request().Context()
+
+	todo, _ := th.TService.GetByID(ctx, id64)
+
+	return c.JSON(http.StatusOK, todo)
 }

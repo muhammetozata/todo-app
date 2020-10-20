@@ -3,6 +3,7 @@ package todo
 import (
 	"context"
 	"log"
+	"strconv"
 
 	"encoding/json"
 	"net/http"
@@ -24,7 +25,7 @@ func NewTJSONRepository(url string) models.TodoRepository {
 // GetByID ...
 func (tj *TJSONRepository) GetByID(ctx context.Context, id int64) (models.Todo, error) {
 
-	resp, _ := http.Get(tj.URL)
+	resp, _ := http.Get(tj.URL + "/todos/" + strconv.Itoa(int(id)))
 
 	defer func() {
 		err := resp.Body.Close()

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/url"
+
 	"github.com/labstack/echo"
 	"github.com/muhammetozata/todo-app/todo"
 )
@@ -9,9 +11,10 @@ func main() {
 
 	e := echo.New()
 
-	// mysqlRepo := todo.NewMysqlTodoRepository(nil)
+	urlP, _ := url.Parse("https://jsonplaceholder.typicode.com")
+	urlStr := string(urlP.String())
 
-	jsonRepo := todo.TJSONRespository("https://jsonplaceholder.typicode.com/todos/1")
+	jsonRepo := todo.NewTJSONRepository(urlStr)
 	todoService := todo.NewTodoService(jsonRepo)
 
 	todo.NewTodooHandler(e, todoService)
